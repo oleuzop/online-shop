@@ -1,0 +1,64 @@
+version: '3'
+services:
+
+    config-service:
+        build: ./config-service
+        ports:
+          - 8088:8088
+        healthcheck:
+          test: ["CMD", "curl", "-f", "http://localhost:8088/actuator"]
+          interval: 30s
+          timeout: 10s
+          retries: 5
+        
+    discovery-service:
+      build: ./discovery-service
+      ports:
+        - 8061:8061
+      depends_on:
+        - config-service
+      links:
+        - config-service
+
+    gateway-service:
+      build: ./gateway-service
+      ports:
+        - 8060:8060
+      depends_on:
+        - discovery-service
+      links:
+        - config-service
+
+    customer-service:
+      build: ./customer-service
+      ports:
+        - 8090:8090
+      depends_on:
+        - gateway-service
+      links:
+        - config-service
+
+    product-service:
+      build: ./product-service
+      ports:
+        - 8091:8091
+      depends_on:
+        - gateway-service
+      links:
+        - config-service
+
+    transaction-service:
+      build: ./transaction-service
+      ports:
+        - 8092:8092
+      depends_on:
+        - gateway-service
+      links:
+        - config-service
+
+    frontend-service:
+      build: ./frontend-service
+      ports:
+        - 8080:80
+      depends_on:
+        - gateway-service

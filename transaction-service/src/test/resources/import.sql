@@ -1,0 +1,3 @@
+-- Data to be inserted in the DB
+
+INSERT INTO TRANSACTION (ID, CUSTOMER_ID, PRODUCT_ID, PRICE) VALUES (1, 2, 3, 24.99);
