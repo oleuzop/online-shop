@@ -1,9 +1,8 @@
 # Microservices with Spring Cloud
-<div style="color: red">
-  Still W.I.P.
-</div>
 
-##Introduction
+### Still W.I.P.
+
+## Introduction
 Example project for self-training done by me (Tomás GARCÍA-POZUELO - http://github.com/oleuzop)
 
 The objective of this project is to do a complete microservices web shop application using:
@@ -20,7 +19,7 @@ The objective of this project is to do a complete microservices web shop applica
 - **Spring Data** using **H2** memory database (JPA).
 - **Angular** for the frontend, integrated in a Maven project. Using **Material**.
 
-##Future work (TODO - Backlog):
+## Future work (TODO - Backlog):
 - Add **Spring Security**.
 - Integrate with **Oauth2** using **Keycloak**.
 - Create better **Integration Tests** in Spring Cloud disabling Eureka and the Gateway.
