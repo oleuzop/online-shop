@@ -34,6 +34,7 @@ spring:
           filters:
             - RewritePath=/customer/(?<path>.*), /$\{path}
             - RemoveRequestHeader=Cookie
+            - PreOauth2SSOGatewayFilter
         - id: product-service
           uri: lb://product-service
           predicates:
@@ -41,6 +42,7 @@ spring:
           filters:
             - RewritePath=/product/(?<path>.*), /$\{path}
             - RemoveRequestHeader=Cookie
+            - PreOauth2SSOGatewayFilter
         - id: transaction-service
           uri: lb://transaction-service
           predicates:
@@ -48,3 +50,15 @@ spring:
           filters:
             - RewritePath=/transaction/(?<path>.*), /$\{path}
             - RemoveRequestHeader=Cookie
+            - PreOauth2SSOGatewayFilter
+  security:
+    oauth2:
+      client:
+        registration:
+          uaa:
+            client-id: online-shop
+            client-secret: b994d1f8-ee6f-4bf8-b66b-87de5192ac34
+            authorization-grant-type: client_credentials
+        provider:
+          uaa:
+            token-uri: https://localhost:8444/oauth/token
